@@ -1,0 +1,10 @@
+FROM node:8.11-alpine
+MAINTAINER "Rajan" "rajan.tech.86@gmail.com"
+RUN apk update \
+    && apk add zip \
+    && mkdir -p /opt/telemetry
+ADD src /opt/telemetry/
+WORKDIR /opt/telemetry/
+RUN npm install
+WORKDIR /opt
+CMD ["zip", "-r", "telemetry-service.zip", "telemetry"]
